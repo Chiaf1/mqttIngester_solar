@@ -1,0 +1,19 @@
+services:
+  ingest:
+    build: .
+    volumes:
+      - ./config.yaml:/app/config.yaml
+  influxdb:
+    image: influxdb:2.7
+    container_name: influxdb
+    restart: unless-stopped
+    ports:
+      - "8086:8086"
+    volumes:
+      - influx_data:/var/lib/influxdb2
+      - influx_config:/etc/influxdb2
+    env_file:
+      - .env/influx.env
+volumes:
+  influx_data:
+  influx_config:
