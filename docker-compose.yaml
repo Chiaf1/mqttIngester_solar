@@ -1,6 +1,7 @@
 services:
   ingest:
-    build: .
+    image: chiaf1/mqtt-ingest-influx
+    restart: unless-stopped
     volumes:
       - ./config.yaml:/app/config.yaml
   influxdb:
