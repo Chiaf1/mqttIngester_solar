@@ -14,7 +14,7 @@ ARG TARGETOS
 ARG TARGETARCH
 
 # building the app
-RUN CGO_ENABLED=0 GOOS=linux go build -o app ./cmd/mqttIngester
+RUN CGO_ENABLED=0 GOOS=$TARGETOS GOARCH=$TARGETARCH go build -o app ./cmd/mqttIngester
 
 # Stage 2: final image
 FROM alpine:3.23.3
